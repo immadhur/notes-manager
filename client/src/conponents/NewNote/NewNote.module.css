@@ -1,0 +1,14 @@
+.body{
+    text-align: center;
+    display: flex;
+    width: 90%;
+    margin: 20px auto;
+    flex-flow: column;
+}
+
+.body input{
+    width: 85%;
+    margin: 10px auto;
+    height: 100px;
+    font: 14px;
+}
