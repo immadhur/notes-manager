@@ -38,7 +38,7 @@ This application is deployed on heroku with mongoLab as database.
 
 ***Please find below link to the application -***
 
-[https://madhur-burger-builder.herokuapp.com/](https://madhur-burger-builder.herokuapp.com/)
+[https://madhur-notes-manager.herokuapp.com/](https://madhur-notes-manager.herokuapp.com/)
 
 ## About Me
 
