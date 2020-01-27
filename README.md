@@ -18,7 +18,7 @@ JWT_SECRET=<value>
 ```
 **2. Run**
 
-` npm ren dev`
+` npm run dev`
 
 ## Technical 
 
