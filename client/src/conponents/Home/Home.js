@@ -19,7 +19,7 @@ const Home = (props) => {
 
     useEffect(() => {
         setIsLoading(true);
-        axios.get('http://localhost:4000/notes', {
+        axios.get('/notes', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -39,7 +39,7 @@ const Home = (props) => {
     const logoutHandler = () => {
         setIsLoading(true);
         console.log(localStorage.getItem('token'));
-        axios.post('http://localhost:4000/logout', {}, {
+        axios.post('/logout', {}, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -67,7 +67,7 @@ const Home = (props) => {
     const addNewNoteHandler = (e, data) => {
         console.log(data);
         setIsLoading(true);
-        axios.post('http://localhost:4000/notes/add', {
+        axios.post('/notes/add', {
             data
         }, {
             headers: {
@@ -86,7 +86,7 @@ const Home = (props) => {
 
     const deleteNoteHandler = async (key) => {
         setIsLoading(true);
-        const res = await axios.delete(`http://localhost:4000/note/${key}`, {
+        const res = await axios.delete(`/note/${key}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -108,7 +108,7 @@ const Home = (props) => {
     }
 
     const updateNoteHandler = async (key, data) => {
-        const res = await axios.patch(`http://localhost:4000/note/${key}`, {data}, {
+        const res = await axios.patch(`/note/${key}`, {data}, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

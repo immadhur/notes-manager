@@ -14,10 +14,10 @@ function App() {
   const loginButtonClickHandler = (event, isLogin, username, password) => {
     event.preventDefault();
     if (isLogin) {
-      loginUser('http://localhost:4000/login', username, password);
+      loginUser('/login', username, password);
     }
     else {
-      loginUser('http://localhost:4000/signup', username, password);
+      loginUser('/signup', username, password);
     }
   }
 
