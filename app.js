@@ -7,6 +7,7 @@ const port=process.env.PORT||4000;
 require('./src/db/mongoose');
 const userRouter=require('./src/routers/user');
 const notesRouter=require('./src/routers/notes');
+const path=require('path');
 
 app.use(express.json())
 app.use(cors());
