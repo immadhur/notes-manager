@@ -23,7 +23,7 @@ JWT_SECRET=<value>
 ## Technical 
 
 - This is a MERN stack application with 'mongoose' as Object modeling tool.
-- Redux is used for state management with 'Redix-saga' as middleware.
+- Redux is used for state management with 'Redux-saga' as middleware.
 - It is build on React version 16.8.
 - React hooks is also being used.
 
