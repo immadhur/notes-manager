@@ -7,7 +7,7 @@ import DialogBoxModel from '../UI/DialogBoxModel/DialogBoxModel';
 const ListNotes=(props)=>{
 
 
-
+console.log(props);
 // const newnote = <DialogBoxModel show={isNewNoteDialogVisible} close={newNoteDialogCloseHandler}>
 // <NewNote click={editNoteHandler} />
 // </DialogBoxModel>

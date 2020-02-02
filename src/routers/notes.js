@@ -9,6 +9,7 @@ router.post('/notes/add', auth, async (req, res) => {
             data: req.body.data,
             owner: req.user._id,
         });
+        console.log(req.body);
         await note.save();
         res.status(200).send({
             success: true
@@ -24,6 +25,7 @@ router.post('/notes/add', auth, async (req, res) => {
 router.get('/notes',auth, async (req, res)=>{
     try {
         const notes=await notesModel.find({owner:req.user._id});
+        // console.log(notes);
         res.status(200).send({
             success:true,
             notes
@@ -41,7 +43,9 @@ router.patch('/note/:id', auth, async (req, res)=>{
         const note=await notesModel.findById(req.params.id);
         if(!note)
             throw 'Note not found!';
-        await notesModel.findOneAndUpdate({_id:req.params.id, owner:req.user._id});
+        note.data=req.body.data;
+        // await notesModel.findOneAndUpdate({_id:req.params.id, owner:req.user._id});
+        await note.save();
         res.status(200).send({
             success:true
         })

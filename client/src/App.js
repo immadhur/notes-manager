@@ -1,64 +1,41 @@
-import React, { useState } from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
-import Login from './conponents/login/login';
-import axios from 'axios';
-import { Redirect, Switch, Route } from 'react-router-dom';
-import Home from './conponents/Home/Home';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Home from './components/Home/Home';
+import AuthMain from './components/login/AuthMain';
+import { connect } from 'react-redux'
+import * as action from './store/actions/actions';
 
-function App() {
+function App(props) {
 
-  let [redirectToProfile, setRedirectToProfile] = useState(false);
-  let [errorText, setErrorText] = useState('');
-  let [isLogin, setIsLogin] = useState(true);
-
-  const loginButtonClickHandler = (event, isLogin, username, password) => {
-    event.preventDefault();
-    if (isLogin) {
-      loginUser('/login', username, password);
-    }
-    else {
-      loginUser('/signup', username, password);
-    }
-  }
-
-  const loginUser = (url, username, password) => {
-    axios.post(url, {
-      username,
-      password
-    }).then((res) => {
-      console.log(res);
-      if (res.data.success) {
-        console.log(res);
-        localStorage.setItem('token', res.data.token);
-        setRedirectToProfile(true)
-      }
-      else
-        setErrorText(res.msg);
-    }).catch((err, res) => {
-      console.log(err.response.data.error)
-      setErrorText(err.response.data.msg);
-    })
-  }
-
-  const secondButtonHandler=(e)=>{
-    e.preventDefault();
-    setIsLogin(!isLogin);
-  }
+  useEffect(()=>{
+    props.checkAuth();
+  }, [])
 
   return (
-    <div>
-    <Switch>
-      <Route path='/login' render={()=><Login click={loginButtonClickHandler} secondButtonClick={secondButtonHandler} isLogin={isLogin} errorTxt={errorText} />} />
-      <Route path='/' component={Home} />
-    </Switch>
-    <div className="App">
-      {redirectToProfile ?
-        <Redirect to='/' /> :
-        null
+    <>
+      {props.isLoggedIn ?
+        <Redirect from='/login' to='/' /> :
+        <Redirect to='/login'/>
       }
-    </div>
-    </div>
+      <Switch>
+        <Route path='/login' component={AuthMain} />
+        <Route path='/' component={Home} />
+      </Switch>
+    </>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    checkAuth:()=>dispatch(action.checkAuth())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
